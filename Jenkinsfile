@@ -1,9 +1,9 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('Test') {
+        stage('Build and Test') {
             steps {
-                sh 'ls & pwd'
+                sh 'hostname'
             }
         }
     }
