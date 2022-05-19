@@ -2,7 +2,7 @@ pipeline {
     agent none
     environment {
     registry = "sw9719/pytest"
-    registryCredential = ‘dockerhub’
+    registryCredential = "dockerhub"
     }
     stages {
         stage('Build and Test') {
