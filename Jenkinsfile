@@ -28,7 +28,7 @@ pipeline {
             steps {
                sh '''
                   oc login -u $CLUSTER_USR -p $CLUSTER_PSW https://api.ayaka.ocp4.link:6443 --insecure-skip-tls-verify
-                  helm update pytest myapp
+                  helm upgrade pytest myapp
                   oc logout
                   '''
             }
