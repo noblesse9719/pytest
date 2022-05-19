@@ -24,7 +24,7 @@ pipeline {
              }
         }
         stage('Deploy') {
-            agent none
+            agent node
             steps {
                sh '''
                   oc login -u $CLUSTER_USR -p $CLUSTER_PSW https://api.ayaka.ocp4.link:6443
