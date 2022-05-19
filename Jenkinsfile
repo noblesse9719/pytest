@@ -29,7 +29,7 @@ pipeline {
                sh '''
                   oc login -u $CLUSTER_USR -p $CLUSTER_PSW https://api.ayaka.ocp4.link:6443 --insecure-skip-tls-verify
                   helm upgrade pytest myapp
-                  helm get manifest | oc apply -f -
+                  oc rollout restart deployment $(cat myapp/values.yaml | grep -i fullnameOverride |  awk '{print $2}'| tr -d \")
                   oc logout
                   '''
             }
