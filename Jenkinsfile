@@ -1,9 +1,11 @@
 pipeline {
-    agent { dockerfile true }
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
     stages {
         stage('Test') {
             steps {
-                sh 'ls & pwd'
+                sh 'node --version'
             }
         }
     }
