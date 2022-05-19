@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return "Hello New world!" 
+  return "Hello Lols world!" 
 
 def fc(x):
     return x.capitalize()
