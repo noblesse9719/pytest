@@ -19,6 +19,7 @@ spec:
       {{- end }}
       labels:
         {{- include "myapp.selectorLabels" . | nindent 8 }}
+      LastUpdate: {{ now | quote }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
