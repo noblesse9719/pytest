@@ -1,10 +1,25 @@
 pipeline {
-    agent { dockerfile true }
+    environment {
+    registry = "sw9719/pytest"
+    registryCredential = ‘dockerhub’
+    }
     stages {
         stage('Build and Test') {
+            agent { dockerfile true }
             steps {
-                sh 'hostname'
+                sh 'pytest'
             }
         }
+        stage('Push image') {
+            agent none
+            steps {
+               script {
+                 docker.build registry
+                 docker.withRegistry( '', registryCredential ) {
+                   dockerImage.push()
+                 }
+           }
+        }
     }
+    
 }
