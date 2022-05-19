@@ -3,6 +3,7 @@ pipeline {
     environment {
     registry = "sw9719/pytest"
     registryCredential = "dockerhub"
+    CLUSTER = credentials('clustercreds')
     }
     stages {
         stage('Build and Test') {
@@ -21,6 +22,16 @@ pipeline {
                  }
                }
              }
-         }
+        }
+        stage('Deploy') {
+            agent none
+            steps {
+               sh '''
+                  oc login -u $CLUSTER_USR -p $CLUSTER_PSW https://api.ayaka.ocp4.link:6443
+                  helm update pytest myapp
+                  oc logout
+                  '''
+            }
+        }
      }    
 }
